@@ -303,6 +303,7 @@ try {
         if ($controls.Chrome.IsChecked)     { $currentStep++; InstallProgramIfNeeded "Google.Chrome" "Google Chrome" $progressBar $consoleTextBox $totalSteps $currentStep }
         if ($controls.Firefox.IsChecked)    { $currentStep++; InstallProgramIfNeeded "Mozilla.Firefox" "Mozilla Firefox" $progressBar $consoleTextBox $totalSteps $currentStep }
         if ($controls.Opera.IsChecked)      { $currentStep++; InstallProgramIfNeeded "Opera.Opera" "Opera Browser" $progressBar $consoleTextBox $totalSteps $currentStep }
+        if ($controls.OperaGx.IsChecked)    { $currentStep++; InstallProgramIfNeeded "Opera.OperaGX" "OperaGx Browser" $progressBar $consoleTextBox $totalSteps $currentStep }
         if ($controls.Brave.IsChecked)      { $currentStep++; InstallProgramIfNeeded "Brave.Brave" "Brave Browser" $progressBar $consoleTextBox $totalSteps $currentStep }
         if ($controls.Steam.IsChecked)      { $currentStep++; InstallProgramIfNeeded "Valve.Steam" "Steam" $progressBar $consoleTextBox $totalSteps $currentStep }
         if ($controls.Discord.IsChecked)    { $currentStep++; InstallProgramIfNeeded "Discord.Discord" "Discord" $progressBar $consoleTextBox $totalSteps $currentStep }
@@ -342,11 +343,13 @@ try {
         switch ($gpu) {
             "NVIDIA" { 
                 $currentStep++; 
-                InstallProgramIfNeeded "Nvidia.GeForceExperience" "NVIDIA Driver" $progressBar $consoleTextBox $totalSteps $currentStep 
+                InstallProgramIfNeeded "TechPowerUp.NVCleanstall" "NVIDIA Driver NVCleaninstaller" $progressBar $consoleTextBox $totalSteps $currentStep 
             }
-            "AMD"    { 
-                $currentStep++; 
-                InstallProgramIfNeeded "AdvancedMicroDevices.AMDSoftware" "AMD Driver" $progressBar $consoleTextBox $totalSteps $currentStep 
+           "AMD" {
+                $currentStep++
+                $consoleTextBox.AppendText("AMD GPU erkannt – öffne Support-Seite für manuelle Treiberwahl...`n")
+                Start-Process "https://www.amd.com/en/support"
+                $consoleTextBox.ScrollToEnd()
             }
             default  { 
                 $consoleTextBox.AppendText("Unknown GPU vendor.`n") 
